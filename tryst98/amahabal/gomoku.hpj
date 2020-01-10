@@ -1,0 +1,41 @@
+;F101.00 Project file
+[OPTIONS]
+BUILD = BuildAll
+COMPRESS = False
+CONTENTS = Contents
+COPYRIGHT = Copyright © ...
+OLDKEYPHRASE = False
+OPTCDROM = Yes
+REPORT = No
+TITLE = GoMoKu
+WARNING = 1
+ 
+[FILES]
+C:\TMP\GOMOKU.rtf
+ 
+[CONFIG]
+RegisterRoutine("MMSYSTEM","sndPlaySound","Si")
+RegisterRoutine("MMSYSTEM","mciExecute","S")
+BrowseButtons()
+ 
+[BUILDTAGS]
+BuildAll
+ 
+[ALIAS]
+ 
+[BAGGAGE]
+
+ 
+[BITMAPS]
+
+ 
+[MAP]
+ 
+[WINDOWS]
+MAIN = "GoMoKu", , , , (192,192,192), 0
+Window1 = "", ( 64, 64, 832, 832), , , (192,192,192), 0
+Window2 = "", ( 0, 0, 1023, 511), , , (192,192,192), 0
+Window3 = "", ( 0, 511, 1023, 511), , , (192,192,192), 0
+Window4 = "Glossary", ( 0, 0, 511, 1023), , , (192,192,192), 0
+Window5 = "Index", ( 511, 0, 511, 1023), , , (192,192,192), 0
+ 

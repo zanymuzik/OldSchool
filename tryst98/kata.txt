@@ -1,0 +1,68 @@
+ 
+NODEWEIGHT:     The computer uses GAME TREES to choose the move .
+		Firstly it chooses which are the square are appropriate 
+		and best to play on . The appropriate squares would be the
+		ones which have atleast one or more pieces ( either his 
+		own or the opponents ) in it's neighbour.It calculate this 
+		by the boolean procedure ((needtoeval)).
+
+		If a square is need to be evaluated, it temporarly puts the
+		cross at that position,and checks he got m crosses in a	line.
+		If he could, he marks that point as 1 (Computer Wins)and if 
+		not then then it makes the tree at that point considering 
+		all moves of the opponent that are possible and appropriate,
+		if the opponent could make m points in aline then that point
+		is marked -1 (Computer Loses) else again a tree is made at 
+		that point.
+
+		This will keep on going till the loop is done ((lookaheads))
+		times.	If till the end, no one wins, that point is marked 
+		as 0 ( Draw).
+	
+		Now if all the stems of the tree are evaluated, then it calculate 
+		the ((nodeweight)) for that tree.
+
+		If the node belongs to the computer then the ((nodeweight is 
+		the maximum of all the ((pointweights)) it sees further. This
+		is for the fact that if possible , the computer would always 
+		go for the move which has the maximum probablity of winning.
+		
+		It may very well happen that more than one node have the same 
+		nodeweight. This situation is not much of a problem except when 
+		this is at the first level (ie the computer has to use a point
+		out of these for it's turn. For this , all those points whose 
+		nodeweights are same and maximum are considered again and weighted 
+		again by the procedure ((whosthebest)) which weights the points 
+		depending what is surrounding them. A Cross , a Circle , 2 crosses
+		in a row, & 2 circles in a row are weighted depending on whether they
+		are in a diagonal or horizontal or vertical position as compared 
+		to the point under consideration. A Cross is given more weight
+		( & makes the game more aggressive if m>4) and otherwise if m<=4
+		(making the game more defensive).
+		
+		And if the node belongs to the opponent, the ((nodeweight)) is
+		taken as the average of all the ((pointvalues)) it sees further.
+		As a special case if any of the pointvalues is -1(ie there is 		
+		a move by which the user could win in the next move) , nodeweight
+		is taken as -1.
+		This is due to the assumption that the user is likely to play all
+		moves with the same probablity except for the move for which he
+		could win just in the next move.		
+		
+
+CHOOSEMOVE :    The procedure CHOOSEMOVE chooses the most appropriate move 
+		for the computer to play at that time .
+		
+		Firstly it selects what should be the lookahead of the game 
+		tree.This is decided by the function ((spacesleft)). This 
+		is done to optimize the time delay and the thinking of the 
+		computer.
+
+		The ((lookaheads)) are also altered by the ((intelligence))
+		level of the user. Higher level of ((intelligence)) make 
+		the lookaheads also higher.
+
+		Then it uses the procedure ((bestmove)) to find the best 
+		possible move and ((xcord)) & ((ycord)) which are passed 
+		along. The computer plays at the position ((xcord)),((ycord)).
+		 

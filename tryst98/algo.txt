@@ -1,0 +1,128 @@
+ALGORITHM FOR THE PROGRAM TICTACTO.PAS
+--------------------------------------
+
+Efficiency is of order O(xü) where x:Dimension of the grid.
+                                   n:4.
+The step no. of the algorithm has been indicated in the source code/
+program listing
+
+Algorithm steps::
+-----------------
+
+1. Input the dimension of the grid(n * n) from the user as variable...n
+   check that 'n' lies in the range 3..20
+2. If n<=4 then
+      (a) The no. of elements in a row, column or diagnol(m)=n
+          {This is necessary otherwise the game of tic-tac-toe invariably
+          turns adantageous to the player who makes the first move}
+    else
+      (i)Input the value of m
+      (ii)Check that m<=n and m>=4
+      (ii)Repeat step 2 if the above condition is unsatisfied
+3. Input the no. of games the user wants to play as variable(...gs);
+   {This value is limited to 20}
+4. Give the user three choices regarding start of play
+       1.User always starts first.
+       2.Computer always starts first.
+       3.User aand the computer start alternately.
+   Input the choice code from the user as cho
+5. Set gss=1
+6. Set no. of moves played by computer(..commove)=0
+7. Repeat the following steps until gs<=gss
+    (1)if cho=1 then
+            (a)Ask the user to place his element on the grid.
+            (b)Refer to procedure compmove for the computer's move
+            {This is in step no. 8 of the algorithm}
+            (c)Increment compmove by 1.
+            (d)Repeat the above steps till function check(m) is true
+            {This is the step no. 9 in the algorithm}
+        else
+     (2)if cho=2 then
+            (a)Refer to procedure compmove for the computer's move
+            {This is in step no. 8 of the algorithm}
+            (b)Ask the user to place his element on the grid.
+            (c)Increment compmove by 1.
+            (d)Repeat the above steps till function check(m) is true
+            {This is the step no. 9 in the algorithm}
+       else
+     (3)if cho=3 then
+            (a)Do the steps (1) and (2) alternately with cho value as
+            1 and 2 alternately
+     (4)Determine whether the user or the computer has won the game. This
+       is determined through the function check.Increment gss by one.
+8. {This step is the procedure compmove}
+     (1)If commove=1 then
+         (a)If the centremost square is empty then place the element on it.
+          If it is not empty then place to the right of this square
+      (2)If commove=2 and m>=5 then
+         (a)Place the element around whichever square around the first placed
+           element is empty.
+          else
+       (i)Generate the square at which the computer places its element through
+          the procedure comcheck.{This is step no. 10 of the algorithm}
+9.  {This is the  function check}
+   It takes 'm' as the parameter.
+   This is to check whether 'm' elements are in a row , diagnol
+   or column
+    (1)Check whether 'm' elements of either the user or the computer
+    are in a row. To do this check each element with its succesive elements
+    until 'm' elements are found in a row
+    (2)Check whether 'm' elements of either the user or the computer
+    are in a column. To do this check each element with its succesive elements
+    until 'm' elements are found in a column,
+    (3)Check whether 'm' elements of either the user or the computer
+    are in a diagnol. To do this check each element with its succesive elements
+    until 'm' elements are found in a diagnol.All possible diagnols in the grid aare thus checked.
+    (4)If such consecutive 'm' elements are found in a row, column or diagnol
+    then return the value of check as true
+
+10.  {This is the procedure comcheck}
+    (1)Check the following conditions in the order of preference and place the computer's
+    element at the point at which any one of the condition is true by order of preference.
+        (i)If the computer can create a row,column or diagnol of 'm' elements
+        by placing its element at any square.
+        (ii)If the user can create a row,column or diagnol of 'm' elements
+        by placing his element at any square.
+        (iii)If the user can create a row,column or diagnol of 'm-1' elements
+        in two or more different directions by placing his element at any square.
+        (iv)If the computer can create a row,column or diagnol of 'm-1' elements
+        in two or more different directions by placing its element at any square.
+        (v)If the computer can create a row,column or diagnol of 'm-1' elements
+        by placing its element at any square such that it is able to make a row
+        ,column or diagnol of 'm' elements in two or more ways in the next move.
+        (vi)If the user can create a row,column or diagnol of 'm-1' elements
+        by placing his element at any square such that he is able to make a row
+        ,column or diagnol of 'm' elements in two or more ways in the next move.
+        (vii)If the user can create a row, column or diagnol of 'm-2' elements
+        in two or more different directions by placing his element at aany square.
+        (viii)If the computer can create a row, column or diagnol of 'm-2' elements
+        in two or more different directions by placing its element at aany square.
+        (ix)If the computer can create a row,column or diagnol of 'm-1' elements
+        by placing its element at any square.
+        (x)If the user can create a row,column or diagnol of 'm-1' elements
+        by placing his element at any square.
+        (xi)If m<6 then
+              (a)If the user can place four of his elements in a square of dimension 2
+                 by placing his element at any square.
+              (b)If the computer can place four of its elements in a square of dimension 2
+                 by placing his element at any square.
+        (xii)If the computer can create a row,column or diagnol of 'm-2' elements
+        by placing its element at any square.
+        (xiii)If the user can create a row,column or diagnol of 'm-2' elements
+        by placing his element at any square.
+     (2)If any of the above conditions is satisfied in the order of preference
+       then place the computer's element at that square
+        else
+          (i)Place the computer's element at that square such that a row, column
+          or diagnol of the largest no. of computer's elements together is
+          possible.
+11. Display the scorecard aftyer all the games are over.
+
+
+        
+
+
+
+
+
+

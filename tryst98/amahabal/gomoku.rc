@@ -1,0 +1,41 @@
+/****************************************************************************
+
+
+DBOX.RC
+
+produced by Borland Resource Workshop
+
+
+*****************************************************************************/
+
+#include "gomoku.h"
+gomoku MENU 
+{
+ POPUP "&File"
+ {
+  MENUITEM "&Exit", IDM_EXIT
+ }
+
+ MENUITEM "&Restart", IDM_RESTART
+ POPUP "&Help", HELP
+ {
+  MENUITEM "&Contents", CM_HELPCONTENTS
+  MENUITEM SEPARATOR
+  MENUITEM "&About...", CM_HELPABOUT
+ }
+
+}
+gomoku DIALOG 27, 24, 124, 78
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "gomoku"
+FONT 8, "Comic Sans MS"
+{
+ DEFPUSHBUTTON "OK", IDOK, 10, 60, 50, 14
+ PUSHBUTTON "Cancel", IDCANCEL, 65, 60, 50, 14
+ EDITTEXT IDD_ENTERN, 18, 5, 100, 10
+ LTEXT "N:", -1, 3, 5, 10, 10
+ LTEXT "M:", -1, 3, 20, 10, 10
+ EDITTEXT IDD_ENTERM, 18, 20, 100, 10
+ CONTROL "Computer first", IDD_PUSH1, "BUTTON", BS_AUTORADIOBUTTON, 25, 35, 85, 7
+ CONTROL "User first", IDD_PUSH2, "BUTTON", BS_AUTORADIOBUTTON, 25, 45, 85, 13
+}
