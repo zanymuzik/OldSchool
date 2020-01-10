@@ -1,0 +1,12 @@
+File listing:
+1.gomoku.ide: Project file 
+2.gomoku.mak: make file
+3.gomoku.c  : main source code file
+4.gomoku.inc: Windows entry function(included from gomoku.c)
+5.gomoku.rc : Resource script file for project
+6.gomoku.def: def file needed to link the code
+7.gomoku.exe: compile object code
+8.gomoku.h  : Include file
+9.gomoku.hlp: help file for gomoku
+10.gomoku.hpj:help project file(to make help file)
+11.gomoku.rtf: help discription(to make helpfile)

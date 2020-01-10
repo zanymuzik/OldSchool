@@ -1,0 +1,161 @@
+         DEVELOPED BY:GAURAVJAIN(B-31,JWALA),electrical,iitd
+		      MOHIT AGARWAL(KUMAON) ,electrical,iitd
+		      E-MAIL:baijubawra@hotmail.com
+
+                It is our great pleasure to introduce to you this game of
+        TIC-TAC-TOE which we have developed for TRYST'98.The program is
+        based on a secret formulae with magical powers and the true colors
+        of this program would be clear to you as go through this algorithm.
+
+                We would start off by describing the functions and procedures
+        so that you may clearly follow the main program.
+
+	We use a n * n array ((board)) which stores the current configuration
+	of the Board. A CROSS is denoted as ((1)) , A ZERO is denoted by ((-1)
+	and an empty position by ((0)).
+
+        1. INITIALIZE:It initializes all the squares of the n*n matrix
+                      called board[i,j] to zero.It also computes ((rad))
+		      which is used in graphical output.
+ 	
+        2. MAX       :gives the larger of the two numbers.
+
+        3. MIN       :gives the smaller of the two numbers.
+
+        4. BEEP      :A sound is produced whenever a move is made or an infor
+                     -mation is entered regarding the mode of playing etc.
+
+        5.SPACESLEFT :It evaluates no. of places which are left empty on the
+                      board at any given instant of time.This is used later
+                      in the program to dynamically evaluate the no. of look-
+                      aheads.This funda will be described later in details.
+
+        6. NEEDTOEVALUATE:It gives a boolean "true" if the point under
+                      consideration is adjacent to any point which is already
+                      occupied.and gives a value "false" if it is not adjacent
+                      to an occupied point.An occupied point is distinguished
+                      from an empty square by the fact that an empty square
+                      contains a value zero and an occupied square contains
+                      a value +1 if it is occupied by CROSS (belonging to compu)
+                      or a value -1 if it is occupied by ZERO (belonging to
+                      player).This procedure will be used to separate out
+                      those squares which need to be evaluated by the compu
+                      for selecting it's best move.
+
+        7. PUTMOVE   :It has the parameters x,y and whosemove.X,Y represent the
+                      coordinates of the square at which the move is to be
+                      put by the player or the compu.((whosemove)) would carry
+                      the value +1 or -1 depending on whether compu has to
+                      play or the user.This procedure draws a cross of blue
+                      color to denote compu's move and draws a cream color
+                      circle to denote the player's move.also putmove evaluates
+		      whether or not the required line has been made for the
+		      player for whom putmove has been called.this is done 
+		      using (whogotit) which is described later.
+
+        8. WELCOME   :Shows the Welcome Screen (& OUR NAMES !!)
+
+        9. SETBODY   :Gets in various parameters ((n)),((m)),& ((intelligence)).
+
+       10. SHOWBOARD :Makes the Graphical Board.
+
+       11. GETUSERMOVE:This procedure contains another procedure called
+                       MAKECURSOR which is used to draw a arrow shaped cursor.
+                       GETUSERMOVE is supposed to get the coordinates of the
+                       square where the player wants to play his move.The
+                       location of the cursor(arrow) changes as the arrow keys
+                       are used.Untill ENTER is pressed the move is not registered
+                       by the compu.As soon as ENTER key is pressed the putmove
+                       procedure is called and the screen displays the chosen
+                       move. If however you want to exit then ESC can be
+                       entered at your turn.
+       12. WHOGOTIT  :it is the main checking part of our program.the parameters
+       		      it contains are the coordinates of the square ((a,b)) which has to 
+		      be checked for the fact that whether or not the straight
+		      line of ((m)) pieces (of the compu or the user whatever the case maybe)
+		      is formed anywhere in the horizontal or vertical 
+		      or diagonal directions  passing through that particular square.
+		      this is done in case of a diagonal by first getting a point 
+		      which is at the coordinates ((a+i,b+j)) where i changes from -n to +n.
+       		      next if this point lies in the limits of our board that is the 
+		      coordinates are between 1 to n then a counter is increased 
+		      to keep count of the no. of pieces that have come in straight line
+		      and if this counter becomes equal to ((m)) then a dummy is assigned 
+    		      true which will be then assigned to the function ((whogotit)).
+		      for the other diagonal the point's coordinates are changed from
+		      ((a+i,b-j)) where i changes from -n to +n an the remaining thing is 
+		      same as before. for the vertical and the straight lines only one
+		      of the coordinates is changed at a time and the same funda of a 
+		      counter is being used again.finally if ((whogotit)) carries 
+		      a value "true" it means that a straight line of m pieces has 
+		      been made at that point at which this function is being called.
+  
+       13.SPEEDCHECK :this is a function which is used to see the fact whether
+		      after getting the user's move is there a move where the compu
+		      can win immediadely.if there is such a move then it is selected
+		      without any further thought.if there is no such move then
+		      it sees to it that is there a move where if the user plays
+		      then it wins immediately.if there is any such move then compu
+		      plays it so as to stop the user from winning.
+         
+   
+       14.CHOOSEMOVE:
+        
+       15.MAIN      :this is the main body of our program.in this first the compu
+		     gets a move from the user and then uses (speedcheck) to analyze
+		     if there are any obvious points where the compu must play.if 
+		     there are none then it goes into it's normal procedure of 
+		     (chooosemove) which recursively finds out suitable points for 
+		     playing.this process continues till all places are filled up
+		     or till either of the players wins . 
+
+                                BYE!  BYE!
+
+
+
+
+
+
+
+
+
+       13. CHOOSEMOVE:this procedure may easily be called the crux of the program.
+		      it is based on the funda of a game tree which i asume you are 
+		slightly familiar with.when the compu is to make it's move it
+tries to see which point is best so that it can win quickly 
+enough or may avoid defeat smartly.This is done by looking ahead
+into the game by hypothetically placing the opponents move at a 
+suitable point and then again seeing to it that whether or not 
+either of the players has won .(a victory for the compu is 
+assigned a value +1 and a victory for the player is given -1.
+a draw or an undecided game is given a value zero).if however
+the spaces left on the board are not zero and the lookaheads are 
+also greater than zero then this whole process of placing
+a move and assuming the opponents moves is repeated.this 
+whole process is done for all the possible places at which 
+the opponent can place his moves so that an intensive 
+check is made of all possible moves of the player.after 
+each move is hypothetically played the whogotit is called to  
+see whether either of the players has made it yet or no.
+the recursion involved is carried out by the function 
+bestmove .this contains another function called whosethebest
+which will come into picture if the compu sees a lot of moves
+which are equally good .this function will give different weight 
+to points if it sees it's own piece or the opponents piece at a
+particular square.but please note this will be called only after
+all nodeweights have been computed and the maximum nodeweight
+is seen at more than one square.
+bestmove would evaluate a particular point only if there is 
+need to evaluate it ie. it lies adjacent to any other occupied square
+ on the baoard.if it needs to be evaluated and the point is empty then
+its nodeweight is computed by evaluating that point for a win loss 
+or draw.if however lookaheads permit then recursion will be 
+carried out and the nodeweight will be carried out at the next level. 
+                                       
+
+
+
+
+
+
+
